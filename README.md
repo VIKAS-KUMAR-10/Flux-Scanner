@@ -15,6 +15,18 @@
 
 ---
 
+## 🛠️ Built With
+
+This project uses modern Python development tools and security intelligence:
+
+- **[Python 3.12](https://www.python.org/)** — The core engine and analysis logic.
+- **[Typer](https://typer.tiangolo.com/)** — A high-performance CLI framework for building user-friendly commands.
+- **[Rich](https://github.com/Textualize/rich)** — A library for rendering beautiful, high-signal terminal output.
+- **[Pydantic v2](https://docs.pydantic.dev/)** — Robust data validation and modeling for complex security findings.
+- **[OSV.dev API](https://osv.dev/)** — Google's Open Source Vulnerability Database for real-time CVE intelligence.
+
+---
+
 ## 🧠 How It Works (The Security Pipeline)
 
 ```mermaid
@@ -28,13 +40,13 @@ graph TD
     E & H --> I[Final Security Report]
 ```
 
-### 1. SBOM (Software Bill of Materials)
+### 📦 SBOM (Software Bill of Materials)
 The tool starts by fingerprinting your project's ecosystem. It parses files like `package.json`, `requirements.txt`, or `go.mod` to create a structured inventory of every third-party component you are using.
 
-### 2. CVE Mapping & Intelligence
+### 🔍 CVE Mapping & Intelligence
 Every component identified in the SBOM is checked against global vulnerability databases to identify known CVEs, severity ratings, and patch versions.
 
-### 3. Reachability Heuristics (The Filter)
+### 🎯 Reachability Heuristics (The Filter)
 Typical scanners produce too many "false positives." **Flux-Scanner** uses language-specific heuristics to check if the vulnerable parts of a library are actually **imported** or **invoked** in your source files. This allows security teams to focus on reachable exploits first.
 
 ---
@@ -60,55 +72,47 @@ source .venv/bin/activate
 ```
 
 ### Running a Scan
-```bash
-# Basic scan
-flux scan /path/to/project
+We've included a [`demo-target`](./demo-target) project that contains a vulnerable version of `lodash` so you can test the scanner immediately!
 
-# Severity filtered scan
-flux scan /path/to/project --severity HIGH
+```bash
+# Scan the included demo project
+flux scan ./demo-target
+
+# Scan any local project for risks
+flux scan /path/to/your/project
 ```
 
 ---
 
-## 📊 Sample Output
+## 📊 Sample Output (Full Analysis)
 
 ```text
-╭───────────────────────────────────────────────────────╮
-│ Flux-Scanner v1.0.0 - Security & Risk Analysis Utility │
-│ Project Target: /home/user/my-project                │
-╰───────────────────────────────────────────────────────╯
+[Flux-Scanner] v1.0.0 - Security & Risk Analysis Utility
+Target: /home/user/my-project
+
 Detected Ecosystems: Node.js
-Analyzed Supply Chain: lodash, express, ...
+Analyzed Supply Chain: lodash, express, and 12 others
 
 === Reachable Vulnerabilities ===
-✔ lodash (4.17.15) (HIGH / GHSA-29mw-wpgm-hmr9)
-  ↳ Regular Expression Denial of Service (ReDoS) in lodash
+[CRITICAL] | lodash (v4.17.15) | GHSA-29mw-wpgm-hmr9
+  ↳ Vulnerability: Regular Expression Denial of Service (ReDoS)
+  ↳ Reachable: Yes (Matched: 'import lodash from "lodash"')
 
 === Lower-Confidence / Noise Findings ===
-✘ express (4.16.0) (MEDIUM / GHSA-xxxx-xxxx)
+[MEDIUM]   | express (v4.16.0) | GHSA-xxxx-xxxx
+  ↳ Exposure: Indirect (Not imported in source)
 
-╭─ === Security Analysis Metrics === ───╮
-│                                       │
-│  Total Found       : 2                │
-│  Likely Reachable  : 1                │
-│  Noise Filtered    : 1                │
-│  -----------------------------------  │
-│  Prioritization Gain: 50.0%           │
-│                                       │
-╰───────────────────────────────────────╯
+=== Security Analysis Metrics ===
+───────────────────────────────────
+Total Found        : 2
+Likely Reachable   : 1
+Noise Filtered     : 1
+-----------------------------------
+Prioritization Gain: 50.0%
+───────────────────────────────────
 ```
-
----
-
-## 🏗️ Technical Architecture
-
-- **Detector**: Fingerprints projects via marker files.
-- **Parsers**: Native manifest handlers for multiple package managers.
-- **Engine**: Core logic for Reachability and Pattern matching.
-- **API Caller**: Asynchronous intelligence gathering from OSV.dev.
-- **UI**: High-signal CLI reporting via the `Rich` framework.
 
 ---
 
 ## 🤝 Contributing
-For internal architecture details or adding new language support, see [`DESIGN.md`](./DESIGN.md).
+Designed for extensibility. See [`DESIGN.md`](./DESIGN.md) for information on adding new language analyzers or integration feeds.
