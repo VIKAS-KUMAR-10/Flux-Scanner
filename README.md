@@ -101,11 +101,7 @@ flux scan ./demo-target
 ---
 
 ## 📊 Sample Output (Full Analysis)
-
-```<img width="964" height="457" alt="image" src="https://github.com/user-attachments/assets/5af827eb-a3c5-4948-b03f-97bee6d3ac60" />
-
-```
-
+<img width="964" height="457" alt="image" src="https://github.com/user-attachments/assets/5af827eb-a3c5-4948-b03f-97bee6d3ac60" />
 ---
 
 ## 📜 Changelog
