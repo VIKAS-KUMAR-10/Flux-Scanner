@@ -102,30 +102,8 @@ flux scan ./demo-target
 
 ## 📊 Sample Output (Full Analysis)
 
-```text
-[Flux-Scanner] v1.0.0 - Security & Risk Analysis Utility
-Target: /home/user/my-project
+```<img width="964" height="457" alt="image" src="https://github.com/user-attachments/assets/5af827eb-a3c5-4948-b03f-97bee6d3ac60" />
 
-Detected Ecosystems: Node.js
-Analyzed Supply Chain: lodash, express, and 12 others
-
-=== Reachable Vulnerabilities ===
-[CRITICAL] | lodash (v4.17.15) | GHSA-29mw-wpgm-hmr9
-  ↳ Vulnerability: Regular Expression Denial of Service (ReDoS)
-  ↳ Reachability: ✔️ CONFIRMED (Matched: 'import lodash from "lodash"')
-
-=== Lower-Confidence / Noise Findings ===
-[MEDIUM]   | express (v4.16.0) | GHSA-xxxx-xxxx
-  ↳ Exposure: ✘ NOISE (Not imported in source code)
-
-=== Security Analysis Metrics ===
-─────────────────────────────────────────────
-Total Found        : 14
-Likely Reachable   : 2
-Noise Filtered     : 12
----------------------------------------------
-Security Prioritization Gain: 85.7% (High)
-─────────────────────────────────────────────
 ```
 
 ---
