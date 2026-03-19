@@ -1,10 +1,10 @@
 #!/bin/bash
-# codeScanner Setup Script for Linux/macOS
+# Flux-Scanner Setup Script for Linux/macOS
 # This script automates the creation of a virtual environment and installation of dependencies.
 
 set -e
 
-echo "Starting codeScanner setup..."
+echo "Starting Flux-Scanner setup..."
 
 # Check for Python 3.8+
 PYTHON_CMD=""
@@ -46,7 +46,7 @@ echo "Upgrading pip..."
 ./.venv/bin/python -m pip install --upgrade pip
 
 # Install project
-echo "Installing codeScanner and its dependencies..."
+echo "Installing Flux-Scanner and its dependencies..."
 ./.venv/bin/python -m pip install -e .
 
 echo ""
@@ -58,5 +58,5 @@ echo "Activate the virtual environment:"
 echo "    source .venv/bin/activate"
 echo ""
 echo "Then run:"
-echo "    codescanner --help"
+echo "    flux --help"
 echo ""

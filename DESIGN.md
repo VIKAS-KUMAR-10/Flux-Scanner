@@ -1,9 +1,9 @@
-# codeScanner: Design Specification 🛡️
+# Flux-Scanner: Design Specification 🛡️
 
 ## Overview
-**codeScanner** is a language-agnostic Software Supply Chain Security tool designed for security analysts and researchers. It identifies vulnerable third-party components, analyzes dependency exposure, and reduces false positives using lightweight reachability heuristics.
+**Flux-Scanner** is a language-agnostic Software Supply Chain Security tool designed for security analysts and researchers. It identifies vulnerable third-party components, analyzes dependency exposure, and reduces false positives using lightweight reachability heuristics.
 
-Unlike DevSecOps automation tools, **codeScanner** is positioned as a **Security & Risk Analysis Utility**, focusing on deep visibility into the actual risk surface introduced by dependencies.
+Unlike DevSecOps automation tools, **Flux-Scanner** is positioned as a **Security & Risk Analysis Utility**, focusing on deep visibility into the actual risk surface introduced by dependencies.
 
 ## Core Philosophy
 - **Risk Visibility**: Answer exactly which components exist and which ones are exploitable.
@@ -69,9 +69,9 @@ Target Codebase
 ## 3. CLI Interaction Model
 
 ### Commands
-- `codescanner scan <path>`: Run the full multi-stage security analysis.
-- `codescanner analyze <package>`: Deep dive into a specific component's risk footprint.
-- `codescanner export`: Export findings in CycloneDX or JSON format.
+- `flux scan <path>`: Run the full multi-stage security analysis.
+- `flux analyze <package>`: Deep dive into a specific component's risk footprint.
+- `flux export`: Export findings in CycloneDX or JSON format.
 
 ### Analysis Experience
 The tool provides real-time feedback using a professional "Security Analysis" tone:
